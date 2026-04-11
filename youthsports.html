@@ -9,7 +9,7 @@
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 </head>
 
-<body style="margin:0; overflow:auto;">
+<body style="margin:0; overflow:hidden;">
 
 <section class="vi-table-embed brand-canadasb footer-center  align-center" data-embed-position="header" style="width:100%;max-width:100%;margin:0;
          font:14px/1.35 Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
@@ -17,6 +17,7 @@
          box-shadow:0 1px 2px rgba(0,0,0,.07),0 6px 16px rgba(0,0,0,.09);">
 
   <style>
+    html, body { height:100%; }
     .vi-table-embed, .vi-table-embed * { box-sizing:border-box; font-family:inherit; }
 
     .vi-table-embed{
@@ -52,6 +53,11 @@
 
       /* ✅ Footer logo height */
       --footer-logo-h: 36px;
+
+      height: 100vh;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
     }
 
     .vi-table-embed.align-left { --cell-align:left; }
@@ -189,6 +195,10 @@
       --gutter: 12px;
       padding: 10px var(--gutter);
       padding-top: 10px;
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
     }
 
     /* ✅ Controls row */
@@ -453,27 +463,22 @@
       margin: 0;
       width: 100%;
       overflow: visible;
+      flex: 0 0 auto;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
     }
 
     /* scroll */
     #bt-block .dw-scroll{
-      max-height: none;
-      overflow-x: auto;
-      overflow-y: visible;
+      min-height: 0;
+      overflow: auto;
       -webkit-overflow-scrolling: touch;
       touch-action: pan-x pan-y;
-      overscroll-behavior: auto;
+      overscroll-behavior: contain;
       scrollbar-gutter: stable;
-      overscroll-behavior-x: contain;
       scrollbar-width: thin;
       scrollbar-color: var(--scroll-thumb) transparent;
-    }
-
-    @media (max-width: 768px){
-      #bt-block .dw-scroll{
-        max-height: var(--table-max-h);
-        overflow: auto;
-      }
     }
 
     #bt-block .dw-scroll::-webkit-scrollbar{ width: 8px; height: 8px; }
@@ -684,8 +689,7 @@
       height:64px;               /* ✅ fixed footer height */
       border-top:1px solid var(--footer-border);
       background:var(--brand-50);
-      position: sticky;
-      bottom: 0;
+      flex: 0 0 64px;
       z-index: 30;
       overflow:visible;
     }
@@ -1121,6 +1125,70 @@
     }
 
 
+
+
+    function syncMeasuredScrollerHeight(){
+      if (!widgetRoot || !scroller || !table || !tb) return;
+
+      const headerEl = widgetRoot.querySelector('.vi-table-header');
+      const footerEl = widgetRoot.querySelector('.vi-footer');
+      const pageStatusWrap = root.querySelector('.dw-page-status');
+      const theadEl = table.tHead;
+      const visibleRows = Array.from(tb.rows).filter(row =>
+        !row.classList.contains('dw-empty') && row.style.display !== 'none'
+      );
+
+      const targetRows = Math.max(
+        1,
+        Math.min(
+          hasPager && pageSize > 0 ? pageSize : 10,
+          visibleRows.length || (hasPager && pageSize > 0 ? pageSize : 10),
+          10
+        )
+      );
+
+      let visibleRowsHeight = 0;
+      for (let i = 0; i < targetRows; i++) {
+        const row = visibleRows[i];
+        if (row) visibleRowsHeight += row.getBoundingClientRect().height;
+      }
+
+      const fallbackRowHeight = visibleRows[0]?.getBoundingClientRect().height || 54;
+      if (visibleRowsHeight === 0) {
+        visibleRowsHeight = fallbackRowHeight * targetRows;
+      }
+
+      const theadHeight = theadEl ? theadEl.getBoundingClientRect().height : 0;
+      const headerHeight = headerEl ? headerEl.getBoundingClientRect().height : 0;
+      const controlsHeight = controls && !controlsHidden ? controls.getBoundingClientRect().height : 0;
+      const statusHeight = pageStatusWrap ? pageStatusWrap.getBoundingClientRect().height : 0;
+      const footerHeight = footerEl ? footerEl.getBoundingClientRect().height : 0;
+      const rootStyles = window.getComputedStyle(root);
+      const rootPadTop = parseFloat(rootStyles.paddingTop) || 0;
+      const rootPadBottom = parseFloat(rootStyles.paddingBottom) || 0;
+      const buffer = 10;
+
+      const desiredScrollHeight = Math.ceil(theadHeight + visibleRowsHeight + buffer);
+      const availableScrollHeight = Math.floor(
+        window.innerHeight
+        - headerHeight
+        - controlsHeight
+        - statusHeight
+        - footerHeight
+        - rootPadTop
+        - rootPadBottom
+        - buffer
+      );
+
+      const finalScrollHeight = Math.max(
+        Math.ceil(theadHeight + Math.min(fallbackRowHeight * Math.min(targetRows, 3), 180)),
+        Math.min(desiredScrollHeight, availableScrollHeight > 0 ? availableScrollHeight : desiredScrollHeight)
+      );
+
+      scroller.style.height = `${finalScrollHeight}px`;
+      scroller.style.maxHeight = `${finalScrollHeight}px`;
+    }
+
     const onScrollShadow = ()=> scroller.classList.toggle('scrolled', scroller.scrollTop > 0);
     scroller.addEventListener('scroll', onScrollShadow); onScrollShadow();
 
@@ -1325,6 +1393,7 @@
         setPageStatus(0, 0);
         applyVisibleZebra();
         syncMenuOptions();
+        syncMeasuredScrollerHeight();
         return;
       }
     
@@ -1357,6 +1426,7 @@
     
       applyVisibleZebra();
       syncMenuOptions();
+      syncMeasuredScrollerHeight();
     }
 
     if(hasSearch){
@@ -1918,8 +1988,11 @@
     if(hasEmbed && btnImgCurrent) btnImgCurrent.addEventListener('click', ()=> downloadDomPng('current'));
     if(hasEmbed && btnHtmlCurrent) btnHtmlCurrent.addEventListener('click', onEmbedCurrentClick);
 
+    window.addEventListener('resize', syncMeasuredScrollerHeight);
+    window.addEventListener('load', syncMeasuredScrollerHeight);
     renderPage();
     syncMenuOptions();
+    syncMeasuredScrollerHeight();
   })();
   </script>
 
