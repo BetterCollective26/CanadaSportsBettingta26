@@ -401,21 +401,21 @@
     .vi-table-embed .dw-modal-backdrop{
       position:fixed;
       inset:0;
-      background:rgba(17,24,39,.26);
+      background:transparent;
       z-index:9998;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:16px;
+      padding:0;
     }
     .vi-table-embed .dw-modal{
       width:min(92vw, 320px);
-      background:#fff;
-      border:1px solid rgba(0,0,0,.10);
+      background:linear-gradient(180deg,#ffffff 0%, #fff5f5 100%);
+      border:1px solid rgba(var(--brand-500-rgb), .22);
+      border-top:2px solid var(--brand-600);
       border-radius:0;
-      box-shadow:0 18px 40px rgba(0,0,0,.24);
+      box-shadow:0 18px 40px rgba(17,24,39,.18), 0 6px 18px rgba(var(--brand-500-rgb), .10);
       padding:10px;
-      position:relative;
+      position:fixed;
+      left:0;
+      top:0;
     }
     .vi-table-embed .dw-modal-head{
       display:flex;
@@ -423,29 +423,56 @@
       justify-content:space-between;
       gap:10px;
       margin-bottom:8px;
+      padding-bottom:6px;
+      border-bottom:1px solid rgba(var(--brand-500-rgb), .16);
+    }
+    .vi-table-embed .dw-modal-head .dw-menu-title{
+      color:var(--brand-700);
+      font-weight:700;
+      letter-spacing:.01em;
     }
     .vi-table-embed .dw-modal-actions{
       display:flex;
       flex-direction:column;
-      gap:6px;
+      gap:8px;
     }
     .vi-table-embed .dw-modal-close{
       width:32px;
       height:32px;
       border-radius:999px;
-      border:1px solid rgba(0,0,0,.10);
+      border:1px solid rgba(var(--brand-500-rgb), .18);
       background:#fff;
-      color:#111827;
+      color:var(--brand-700);
       cursor:pointer;
       font-size:20px;
       line-height:1;
       display:inline-flex;
       align-items:center;
       justify-content:center;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.9);
     }
     .vi-table-embed .dw-modal-close:hover{
       background:var(--brand-50);
-      border-color: rgba(var(--brand-500-rgb), .35);
+      border-color: rgba(var(--brand-500-rgb), .40);
+      color:var(--brand-700);
+    }
+    .vi-table-embed .dw-modal .dw-menu-btn{
+      width:100%;
+      display:block;
+      text-align:left;
+      border-radius:0;
+      border:1px solid rgba(var(--brand-500-rgb), .18);
+      background:linear-gradient(180deg,#fff 0%, #fff9f9 100%);
+      color:#111827;
+      padding:10px 12px;
+      cursor:pointer;
+      margin:0;
+      font: 14px/1.2 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.9);
+    }
+    .vi-table-embed .dw-modal .dw-menu-btn:hover{
+      background:linear-gradient(180deg,#fff3f3 0%, #ffe7e7 100%);
+      border-color: rgba(var(--brand-500-rgb), .42);
       color:var(--brand-700);
     }
 
@@ -1480,12 +1507,51 @@
       nextBtn.addEventListener('click', ()=>{ page++; renderPage(); });
     }
 
-    function hideMenu(){ if(modal){ modal.classList.add('vi-hide'); modal.setAttribute('aria-hidden','true'); } }
-    function toggleMenu(){
+    let lastTrigger = null;
+
+    function positionMenu(anchor){
+      if(!modal || !anchor) return;
+      const panel = modal.querySelector('.dw-modal');
+      if(!panel) return;
+
+      const rect = anchor.getBoundingClientRect();
+      const panelWidth = Math.min(320, window.innerWidth - 16);
+      panel.style.width = `${panelWidth}px`;
+
+      const gap = 10;
+      let left = rect.right - panelWidth;
+      left = Math.max(8, Math.min(left, window.innerWidth - panelWidth - 8));
+
+      let top = rect.bottom + gap;
+      const maxTop = window.innerHeight - panel.offsetHeight - 8;
+      if (top > maxTop) {
+        top = Math.max(8, rect.top - panel.offsetHeight - gap);
+      }
+
+      panel.style.left = `${left}px`;
+      panel.style.top = `${top}px`;
+    }
+
+    function hideMenu(){
+      if(modal){
+        modal.classList.add('vi-hide');
+        modal.setAttribute('aria-hidden','true');
+      }
+    }
+
+    function showMenu(anchor){
+      if(!modal) return;
+      lastTrigger = anchor || lastTrigger;
+      modal.classList.remove('vi-hide');
+      modal.setAttribute('aria-hidden','false');
+      requestAnimationFrame(()=> positionMenu(lastTrigger));
+    }
+
+    function toggleMenu(anchor){
       if(!modal) return;
       const willShow = modal.classList.contains('vi-hide');
-      modal.classList.toggle('vi-hide', !willShow);
-      modal.setAttribute('aria-hidden', willShow ? 'false' : 'true');
+      if (willShow) showMenu(anchor);
+      else hideMenu();
     }
 
     if(hasEmbed){
@@ -1493,7 +1559,7 @@
         btn.addEventListener('click', (e)=>{
           e.preventDefault();
           e.stopPropagation();
-          toggleMenu();
+          toggleMenu(btn);
         });
       });
       if(modalClose){
@@ -1507,9 +1573,22 @@
           if(e.target === modal) hideMenu();
         });
       }
+      document.addEventListener('click', (e)=>{
+        if(!modal || modal.classList.contains('vi-hide')) return;
+        const panel = modal.querySelector('.dw-modal');
+        const clickedTrigger = triggerButtons.some((btn)=> btn.contains(e.target));
+        if (clickedTrigger) return;
+        if (panel && !panel.contains(e.target)) hideMenu();
+      });
       document.addEventListener('keydown', (e)=>{
         if(e.key === 'Escape') hideMenu();
       });
+      window.addEventListener('resize', ()=> {
+        if(modal && !modal.classList.contains('vi-hide')) positionMenu(lastTrigger);
+      });
+      window.addEventListener('scroll', ()=> {
+        if(modal && !modal.classList.contains('vi-hide')) positionMenu(lastTrigger);
+      }, true);
     }
 
     /* ===== PNG EXPORT (unchanged) ===== */
