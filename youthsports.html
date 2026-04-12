@@ -9,15 +9,16 @@
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 </head>
 
-<body style="margin:0; overflow:hidden;">
+<body style="margin:0; overflow:hidden; background:linear-gradient(180deg,#fff7f7 0%,#fff 28%,#fff 100%);">
 
 <section class="vi-table-embed brand-canadasb footer-center  align-center" data-embed-position="header" style="width:100%;max-width:100%;margin:0;
          font:14px/1.35 Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-         color:#181a1f;background:#ffffff;border:0;border-radius:12px;
-         box-shadow:0 1px 2px rgba(0,0,0,.07),0 6px 16px rgba(0,0,0,.09);">
+         color:#181a1f;background:linear-gradient(180deg,#ffffff 0%,#fffafa 100%);border:1px solid rgba(220,38,38,.12);border-radius:0;
+         box-shadow:0 10px 24px rgba(220,38,38,.08), 0 18px 48px rgba(17,24,39,.10), inset 0 1px 0 rgba(255,255,255,.85);">
 
   <style>
     html, body { height:100%; }
+    body{ -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
     .vi-table-embed, .vi-table-embed * { box-sizing:border-box; font-family:inherit; }
 
     .vi-table-embed{
@@ -53,11 +54,14 @@
 
       /* ✅ Footer logo height */
       --footer-logo-h: 36px;
+      --surface-shadow: 0 14px 34px rgba(17,24,39,.08);
 
       height: 100vh;
       min-height: 0;
       display: flex;
       flex-direction: column;
+      overflow: hidden;
+      isolation: isolate;
     }
 
     .vi-table-embed.align-left { --cell-align:left; }
@@ -151,9 +155,10 @@
 
     /* Header block */
     .vi-table-embed .vi-table-header{
-      padding:10px 16px 8px;
-      border-bottom:1px solid var(--brand-100);
-      background:var(--brand-50);
+      border-bottom:1px solid var(--brand-600);
+      padding:12px 18px 10px;
+      background:linear-gradient(180deg, rgba(255,255,255,.96), rgba(var(--brand-500-rgb), .04));
+      backdrop-filter:none;
       display:flex;
       align-items:flex-start;
       justify-content:space-between;
@@ -183,18 +188,17 @@
     }
     .vi-table-embed .vi-header-actions.vi-hide{ display:none !important; }
     .vi-table-embed .vi-table-header .title{
-      margin:0; font-size:clamp(18px,2.3vw,22px); font-weight:750; color:#111827; display:block;
+      margin:0; font-size:clamp(18px,2.3vw,22px); font-weight:800; letter-spacing:-0.02em; color:#111827; display:block; text-shadow:0 1px 0 rgba(255,255,255,.65);
     }
     .vi-table-embed .vi-table-header .title.branded{ color:var(--brand-600); }
-    .vi-table-embed .vi-table-header .subtitle{ margin:0; font-size:13px; color:#6b7280; display:block; }
+    .vi-table-embed .vi-table-header .subtitle{ margin:0; font-size:13px; color:#7a808d; display:block; }
 
     /* Table block */
     #bt-block, #bt-block * { box-sizing:border-box; }
     #bt-block{
       --bg:#ffffff; --text:#1f2937;
       --gutter: 12px;
-      padding: 10px var(--gutter);
-      padding-top: 10px;
+      padding: 12px var(--gutter) 10px;
       flex: 1 1 auto;
       min-height: 0;
       display: flex;
@@ -255,10 +259,10 @@
       max-width: 260px;
       min-width: 120px;
       padding-right: 34px;
-      background:#fff;
-      border:1px solid var(--brand-700);
+      background:linear-gradient(180deg,#fff,#fff8f8);
+      border:1px solid rgba(var(--brand-500-rgb), .24);
       color:var(--text);
-      box-shadow:inset 0 1px 2px rgba(16,24,40,.04);
+      box-shadow:0 6px 16px rgba(17,24,39,.06), inset 0 1px 1px rgba(255,255,255,.85);
     }
 
     /* ✅ Mobile squeeze */
@@ -312,17 +316,17 @@
       padding-right: 18px;
       width: 62px;
       text-align:center;
-      background:#fff;
-      border:1px solid var(--brand-700);
+      background:linear-gradient(180deg,#fff,#fff8f8);
+      border:1px solid rgba(var(--brand-500-rgb), .24);
       color:var(--text);
-      box-shadow:inset 0 1px 2px rgba(16,24,40,.04);
+      box-shadow:0 6px 16px rgba(17,24,39,.06), inset 0 1px 1px rgba(255,255,255,.85);
     }
 
     /* Buttons */
     #bt-block .dw-btn{
-      background:var(--brand-500);
+      background:linear-gradient(180deg, #ef5350 0%, var(--brand-600) 100%);
       color:#fff;
-      border:1px solid var(--brand-500);
+      border:1px solid rgba(var(--brand-500-rgb), .72);
       padding-inline: 10px;
       cursor:pointer;
       white-space:nowrap;
@@ -330,25 +334,28 @@
       display:inline-flex;
       align-items:center;
       justify-content:center;
+      box-shadow:0 8px 18px rgba(220,38,38,.20), inset 0 1px 0 rgba(255,255,255,.28);
     }
-    #bt-block .dw-btn:hover{background:var(--brand-600); border-color:var(--brand-600)}
+    #bt-block .dw-btn:hover{background:linear-gradient(180deg,#f26461 0%, #c81e1e 100%); border-color:rgba(var(--brand-500-rgb), .9); transform:translateY(-1px)}
     #bt-block .dw-btn:active{transform:translateY(1px)}
     #bt-block .dw-btn[disabled]{background:#fafafa; border-color:#d1d5db; color:#6b7280; opacity:1; cursor:not-allowed; transform:none}
     #bt-block .dw-btn[data-page]{ width: 34px; padding: 0; }
 
     /* Embed/Download button */
     .vi-table-embed .dw-btn.dw-download{
-      background:#ffffff;
+      background:linear-gradient(180deg,#ffffff 0%,#fff3f3 100%);
       color:var(--brand-700);
-      border:1px solid var(--brand-700);
+      border:1px solid rgba(var(--brand-500-rgb), .24);
       height: 34px;
-      padding-inline: 10px;
-      font-weight:600;
+      padding-inline: 12px;
+      font-weight:700;
+      box-shadow:0 8px 18px rgba(17,24,39,.06), inset 0 1px 0 rgba(255,255,255,.9);
     }
     .vi-table-embed .dw-btn.dw-download:hover{
-      background:var(--brand-50);
-      border-color:var(--brand-600);
+      background:linear-gradient(180deg,#fff,#ffeaea);
+      border-color:rgba(var(--brand-500-rgb), .42);
       color:var(--brand-600);
+      transform:translateY(-1px);
     }
 
     /* Download menu */
@@ -408,7 +415,7 @@
       width:min(92vw, 320px);
       background:#fff;
       border:1px solid rgba(0,0,0,.10);
-      border-radius:14px;
+      border-radius:0;
       box-shadow:0 18px 40px rgba(0,0,0,.24);
       padding:10px;
       position:relative;
@@ -457,16 +464,18 @@
 
     /* Card wrapper */
     #bt-block .dw-card{
-      background: var(--bg);
-      border: 0;
-      box-shadow: none;
+      background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,250,250,.98));
+      border: 1px solid rgba(var(--brand-500-rgb), .12);
+      box-shadow: var(--surface-shadow), inset 0 1px 0 rgba(255,255,255,.8);
       margin: 0;
       width: 100%;
-      overflow: visible;
+      overflow: hidden;
+      border-radius:0;
       flex: 0 0 auto;
       min-height: 0;
       display: flex;
       flex-direction: column;
+      position: relative;
     }
 
     /* scroll */
@@ -478,15 +487,37 @@
       overscroll-behavior: contain;
       scrollbar-gutter: stable;
       scrollbar-width: thin;
-      scrollbar-color: var(--scroll-thumb) transparent;
+      scrollbar-color: var(--scroll-thumb) rgba(255,255,255,.2);
+      position: relative;
+      background: linear-gradient(180deg, rgba(255,255,255,.86), rgba(255,255,255,.96));
     }
 
-    #bt-block .dw-scroll::-webkit-scrollbar{ width: 8px; height: 8px; }
+    #bt-block .dw-scroll::before,
+    #bt-block .dw-scroll::after{
+      content:"";
+      position: sticky;
+      left: 0;
+      right: 0;
+      display:block;
+      pointer-events:none;
+      z-index:8;
+    }
+
+    
+
+    #bt-block .dw-scroll::after{
+      bottom: 0;
+      height: 18px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,.98));
+    }
+
+    #bt-block .dw-scroll::-webkit-scrollbar{ width: 10px; height: 10px; }
     #bt-block .dw-scroll::-webkit-scrollbar-track{ background: transparent; }
     #bt-block .dw-scroll::-webkit-scrollbar-thumb{
-      background: var(--scroll-thumb);
+      background: linear-gradient(180deg, #f26461 0%, var(--scroll-thumb) 100%);
       border-radius: 9999px;
       border: 2px solid transparent;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.22);
       background-clip: content-box;
     }
     #bt-block .dw-scroll::-webkit-scrollbar-thumb:hover{ background: var(--brand-600); }
@@ -505,7 +536,7 @@
 
     /* Header row */
     #bt-block thead th{
-      background:var(--header-bg);
+      background:linear-gradient(180deg, #ef5350 0%, var(--header-bg) 100%);
       color:#ffffff;
       font-weight:700;
       vertical-align:middle;
@@ -563,7 +594,7 @@
     }
     
     #bt-block .dw-scroll.scrolled thead th{
-      box-shadow:0 6px 10px -6px rgba(0,0,0,.25);
+      box-shadow:none;
     }
     
     #bt-block thead th.is-sorted{
@@ -575,7 +606,7 @@
     /* shared cell spacing/alignment */
     #bt-block thead th,
     #bt-block tbody td {
-      padding: 16px 14px;
+      padding: 15px 14px;
       text-align: var(--cell-align, center);
       vertical-align: middle;
     }
@@ -667,11 +698,17 @@
     #bt-block tbody tr.dw-zebra-even td{ background:#ffffff; }       /* plain */
     
 
-    #bt-block tbody tr:hover td{ background:var(--hover) !important; }
+
+    #bt-block tbody td{
+      border-bottom: 1px solid rgba(var(--brand-500-rgb), .08);
+    }
+    #bt-block tbody tr:hover td{
+      background:linear-gradient(180deg, #fecaca 0%, #fca5a5 100%) !important;
+    }
     #bt-block tbody tr:hover{
-      box-shadow:inset 3px 0 0 var(--brand-500);
-      transform:translateY(-1px);
-      transition:background-color .12s ease, box-shadow .12s ease, transform .08s ease;
+      box-shadow:inset 4px 0 0 var(--brand-500);
+      transform:none;
+      transition:background-color .14s ease, box-shadow .14s ease;
     }
 
     #bt-block thead th{position:sticky; top:0; z-index:5}
@@ -688,7 +725,8 @@
       padding:0 14px;            /* fixed-height footer; no vertical padding */
       height:64px;               /* ✅ fixed footer height */
       border-top:1px solid var(--footer-border);
-      background:var(--brand-50);
+      background:linear-gradient(180deg, rgba(255,255,255,.96), rgba(var(--brand-500-rgb), .05));
+      backdrop-filter:none;
       flex: 0 0 64px;
       z-index: 30;
       overflow:visible;
@@ -725,7 +763,7 @@
       max-width: none;   /* ✅ THIS is the key change */
     
       padding: 10px 12px;
-      border-radius: 12px;
+      border-radius:0;
     
       background: #ffffff;
       border: 1px solid rgba(0,0,0,.10);
@@ -809,7 +847,7 @@
       flex-direction:column;
       gap:6px;
       padding: 8px 10px;
-      border-radius: 12px;
+      border-radius:0;
       background:#ffffff;
       border: 1px solid rgba(0,0,0,.10);
       box-shadow: 0 10px 22px rgba(0,0,0,.08);
@@ -975,7 +1013,7 @@
       </div>
     </div>
 
-    <div class="dw-page-status " style="padding:6px 2px 4px; color:#6b7280; font:12px/1.2 system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;">
+    <div class="dw-page-status " style="padding:8px 4px 2px; color:#7a808d; font:12px/1.2 system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;">
       <span id="dw-page-status-text"></span>
     </div>
   </div>
