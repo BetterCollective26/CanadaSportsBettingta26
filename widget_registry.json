@@ -152,5 +152,16 @@
     "created_at_utc": "2026-04-24 14:09:40 UTC",
     "bundle_path": "bundles/canada_ranking_girls_trip.html.json",
     "has_bundle": true
+  },
+  "canada_ranking_best_cities_girls_trip.html": {
+    "brand": "Canada Sports Betting",
+    "table_title": "Full Canada Rankings",
+    "file": "canada_ranking_best_cities_girls_trip.html",
+    "pages_url": "https://bettercollective26.github.io/CanadaSportsBettingta26/canada_ranking_best_cities_girls_trip.html",
+    "github_repo_url": "https://github.com/bettercollective26/CanadaSportsBettingta26",
+    "created_by": "gauthambc",
+    "created_at_utc": "2026-04-24 14:26:58 UTC",
+    "bundle_path": "bundles/canada_ranking_best_cities_girls_trip.html.json",
+    "has_bundle": true
   }
 }
