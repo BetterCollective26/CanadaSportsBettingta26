@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "widget_file_name": "csb240426.html",
+  "brand": "Canada Sports Betting",
+  "created_by": "amybc",
+  "created_at_utc": "2026-04-24 03:00:35 UTC",
+  "table_name_words": "CSB240426",
+  "widget_title": "Table 1",
+  "widget_subtitle": "Subheading",
+  "config": {
+    "brand": "Canada Sports Betting",
+    "title": "Table 1",
+    "title_style": "Keep original",
+    "subtitle": "Subheading",
+    "subtitle_style": "Keep original",
+    "striped": true,
+    "stripe_mode": "Odd",
+    "show_header": true,
+    "center_titles": false,
+    "branded_title_color": true,
+    "show_footer": true,
+    "footer_logo_align": "Center",
+    "footer_logo_h": 36,
+    "show_footer_notes": false,
+    "footer_notes": "",
+    "show_heat_scale": false,
+    "cell_align": "Center",
+    "show_search": true,
+    "show_pager": true,
+    "show_embed": true,
+    "embed_position": "Body",
+    "show_page_numbers": true,
+    "bar_columns": [],
+    "bar_max_overrides": {
+      "Overall Girls\u2019 Trip Score (0\u2013100)": 100.0
+    },
+    "bar_fixed_w": 200,
+    "heat_columns": [],
+    "heat_overrides": {
+      "Overall Girls\u2019 Trip Score (0\u2013100)": {}
+    },
+    "heat_strength": 0.55,
+    "heatmap_style": "Branded heatmap",
+    "header_style": "Keep original",
+    "col_header_overrides": {},
+    "header_wrap_target": "Off",
+    "header_wrap_words": 2,
+    "image_columns": [
+      "Rank",
+      "City",
+      "Overall Girls\u2019 Trip Score (0\u2013100)"
+    ]
+  },
+  "confirmed_total_height": 1303,
+  "confirmed_height_source": "estimated",
+  "col_format_rules": {},
+  "csv": "Rank,City,Overall Girls\u2019 Trip Score (0\u2013100),Nightlife & Cocktail Scene (Nightclubs & cocktail bars per 100k),\"Wellness & Leisure Scene \n(Spas & casinos per 100k)\",Accommodation Options (Hotels per 100k),Shopping Scene (Shopping venues per 100k),Brunch & Caf\u00e9 Scene (Brunch spots per 100k),Safety & Accessibility (0\u2013100),Affordability Score (0\u2013100)\n1,\"Vaughan, ON\",59.01,13,93,8.67,103,316,46.0,54.48\n2,\"Windsor, ON\",51.76,45,20,17.29,56,202,48.0,61.78\n3,\"Mississauga, ON\",40.82,11,31,15.88,56,147,52.5,64.98\n4,\"Saskatoon, SK\",29.34,17,10,18.79,23,92,47.8,62.21\n5,\"Ottawa, ON\",28.83,16,13,8.23,42,118,56.9,48.47\n6,\"Calgary, AB\",28.07,12,11,19.21,20,103,50.55,54.56\n7,\"Edmonton, AB\",27.57,10,12,25.36,23,79,46.65,50.08\n8,\"Surrey, BC\",27.51,13,28,11.79,38,167,40.8,52.84\n9,\"Vancouver, BC\",26.28,11,10,10.47,27,129,68.5,23.44\n10,\"Brampton, ON\",25.21,4,21,9.14,34,92,43.4,85.31\n11,\"Montr\u00e9al, QC\",24.1,12,10,8.49,21,91,66.3,36.87\n12,\"London, ON\",22.34,10,13,13.46,42,94,42.4,52.64\n13,\"Kitchener, ON\",20.92,10,12,10.14,29,105,50.85,45.02\n14,\"Winnipeg, MB\",19.96,9,10,14.24,19,85,44.1,59.52\n15,\"Hamilton, ON\",18.2,11,16,4.11,31,94,47.0,55.95\n16,\"Toronto, ON\",13.69,6,10,6.68,18,63,58.7,31.08\n",
+  "hidden_cols": [],
+  "bar_columns": [],
+  "bar_max_overrides": {
+    "Overall Girls\u2019 Trip Score (0\u2013100)": 100.0
+  },
+  "heat_columns": [],
+  "heat_overrides": {
+    "Overall Girls\u2019 Trip Score (0\u2013100)": {}
+  }
+}
