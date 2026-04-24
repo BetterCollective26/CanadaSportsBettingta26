@@ -163,5 +163,16 @@
     "created_at_utc": "2026-04-24 14:26:58 UTC",
     "bundle_path": "bundles/canada_ranking_best_cities_girls_trip.html.json",
     "has_bundle": true
+  },
+  "csb_us_cities_ranking_girls_trips.html": {
+    "brand": "Canada Sports Betting",
+    "table_title": "Full Rankings: Best U.S. Cities for a Girls’ Trip (2026)",
+    "file": "csb_us_cities_ranking_girls_trips.html",
+    "pages_url": "https://bettercollective26.github.io/CanadaSportsBettingta26/csb_us_cities_ranking_girls_trips.html",
+    "github_repo_url": "https://github.com/bettercollective26/CanadaSportsBettingta26",
+    "created_by": "gauthambc",
+    "created_at_utc": "2026-04-24 15:29:14 UTC",
+    "bundle_path": "bundles/csb_us_cities_ranking_girls_trips.html.json",
+    "has_bundle": true
   }
 }
