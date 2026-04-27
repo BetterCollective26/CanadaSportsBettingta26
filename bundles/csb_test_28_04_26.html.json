@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "widget_file_name": "csb_test_28_04_26.html",
+  "brand": "Canada Sports Betting",
+  "created_by": "gauthambc",
+  "created_at_utc": "2026-04-27 23:45:11 UTC",
+  "table_name_words": "CSB_test_28_04_26",
+  "widget_title": "FULL RANKINGS: BEST U.S. CITIES FOR A GIRLS\u2019 TRIP (2026)",
+  "widget_subtitle": "*Cities Ranked By Overall Girls\u2019 Trip Score, Based On Nightlife, Wellness And Leisure, Hotels, Shopping, Brunch, Safety, And Affordability.*",
+  "config": {
+    "brand": "Canada Sports Betting",
+    "title": "FULL RANKINGS: BEST U.S. CITIES FOR A GIRLS\u2019 TRIP (2026)",
+    "title_style": "Keep original",
+    "title_size": "Large",
+    "subtitle": "*Cities Ranked By Overall Girls\u2019 Trip Score, Based On Nightlife, Wellness And Leisure, Hotels, Shopping, Brunch, Safety, And Affordability.*",
+    "subtitle_style": "Keep original",
+    "striped": true,
+    "stripe_mode": "Odd",
+    "stripe_tone": "Light",
+    "show_header": true,
+    "center_titles": false,
+    "branded_title_color": true,
+    "show_footer": true,
+    "footer_logo_align": "Center",
+    "footer_logo_h": 36,
+    "show_footer_notes": false,
+    "footer_notes": "",
+    "show_heat_scale": false,
+    "cell_align": "Center",
+    "show_search": true,
+    "show_pager": true,
+    "show_embed": true,
+    "embed_position": "Body",
+    "show_page_numbers": true,
+    "bar_columns": [
+      "Risk Score"
+    ],
+    "bar_max_overrides": {
+      "Risk Score": 100.0
+    },
+    "bar_fixed_w": 200,
+    "heat_columns": [],
+    "heat_overrides": {},
+    "heat_strength": 0.55,
+    "heatmap_style": "Branded heatmap",
+    "header_style": "ALL CAPS",
+    "col_header_overrides": {},
+    "header_wrap_target": "Off",
+    "header_wrap_words": 2,
+    "image_columns": [
+      "Rank",
+      "City",
+      "Risk Score"
+    ]
+  },
+  "confirmed_total_height": 786,
+  "confirmed_height_source": "estimated",
+  "col_format_rules": {},
+  "csv": "Rank,City,Total Snow (CM),Snow Days (Out Of 7),Heaviest Day (cm),Max Wind Gust (km/h),Max Precip Chance (%),Near-Freezing Days,Freeze-Thaw Days,Risk Score\n1,\"Colorado Springs, CO, Colorado springs CO\",23.38,3,16.03,43.6,92,2,0,74.52\n2,\"Cheyenne, WY\",11.06,4,7.63,53.6,66,5,1,64.97\n3,\"Aspen, CO\",14.63,3,9.87,44.3,67,7,3,64.4\n4,\"Laramie, WY\",7.21,4,3.64,51.1,68,6,4,59.28\n5,\"Lakewood, CO\",11.76,2,11.55,46.4,88,2,1,54.28\n6,\"Denver, CO\",6.79,2,6.72,40.3,87,2,0,36.37\n7,\"Rapid City, SD\",1.89,2,1.61,52.6,64,4,0,33.69\n8,\"Boulder, CO\",5.04,2,4.69,40.3,85,2,1,32.83\n9,\"Aurora, CO\",4.34,1,4.34,45.4,86,2,0,29.82\n10,\"Aurora, IL\",4.34,1,4.34,45.4,86,2,0,29.82\n11,\"Pueblo, CO\",0.14,2,0.07,53.3,89,0,0,29.21\n12,\"Augusta, GA\",2.1,1,2.1,50.0,88,2,0,28.8\n13,\"Casper, WY\",0.91,3,0.77,43.6,50,3,1,26.41\n14,\"Thornton, CO\",2.87,2,2.59,35.6,84,0,0,19.67\n15,\"Billings, MT\",0.28,1,0.28,45.0,36,2,2,13.6\n",
+  "hidden_cols": [],
+  "bar_columns": [
+    "Risk Score"
+  ],
+  "bar_max_overrides": {
+    "Risk Score": 100.0
+  },
+  "heat_columns": [],
+  "heat_overrides": {}
+}
